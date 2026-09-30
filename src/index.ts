@@ -1,7 +1,7 @@
-import "./config/env.ts";
+import "./config/env.js";
 import express, { Application, Request, Response, NextFunction } from "express";
 import morgan from "morgan";
-import redis from "./config/redis.ts";
+import redis from "./config/redis.js";
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 app.use(morgan("dev"));
