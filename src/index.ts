@@ -1,11 +1,14 @@
 import "./config/env.js";
 import express, { Application, Request, Response, NextFunction } from "express";
 import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
 import redis from "./config/redis.js";
+import { swaggerDocument } from "./swagger.js";
 const app: Application = express();
 const PORT = process.env.PORT || 5000;
 app.use(morgan("dev"));
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get("/health", async (req: Request, res: Response) => {
   res.json({ message: "Hey Iam healthy!" });
